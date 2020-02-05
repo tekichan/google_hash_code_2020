@@ -6,6 +6,7 @@ This practice problem gives the target number of slice and a list of numbers of 
 It aims at finding the combination of pizzas with most of slices equal or close to the target.
 
 The below is the result of my program `practice.py`. Explanation has been documented inside the program.
+
 | Problem | Score |
 | ------- | ----- |
 | a_example.in | 16 |
