@@ -104,7 +104,7 @@ def process(no_of_caches, cache_size, video_sizes, ep_dc_latencies, ep_no_of_cac
     # sum(requests x (dc_latency - ep_latency)) / sum(requests) x 1000
     score = 0
     sum_saved_time = 0  # sum(requests x (dc_latency - ep_latency))
-    sum_requests = 0    # sum(requests)
+    sum_requests = sum([requests for requests in video_ep_requests.values()])    # sum(requests)
 
     # for each endpoint:
     for ep_idx, ep_cache_latency in enumerate(ep_cache_latencies):
@@ -159,12 +159,10 @@ def process(no_of_caches, cache_size, video_sizes, ep_dc_latencies, ep_no_of_cac
                     cache_used_sizes[cache_index] = video_sizes[video_index]
                     # calculate score
                     sum_saved_time += request_list[video_pos] * (ep_dc_latencies[ep_idx] - latency_list[cache_pos])
-                    sum_requests += request_list[video_pos] 
                     break
                 elif video_index in result[cache_index]:
                     # calculate score
                     sum_saved_time += request_list[video_pos] * (ep_dc_latencies[ep_idx] - latency_list[cache_pos])
-                    sum_requests += request_list[video_pos]                     
                     break   # Video already exists in a faster cache
                 else:
                     # Check if cache is full
@@ -173,7 +171,6 @@ def process(no_of_caches, cache_size, video_sizes, ep_dc_latencies, ep_no_of_cac
                         cache_used_sizes[cache_index] += video_sizes[video_index]
                         # calculate score
                         sum_saved_time += request_list[video_pos] * (ep_dc_latencies[ep_idx] - latency_list[cache_pos])
-                        sum_requests += request_list[video_pos] 
                         break
 
     # calculate score
