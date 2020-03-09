@@ -106,7 +106,29 @@ def process(no_of_caches, cache_size, video_sizes, ep_dc_latencies, ep_no_of_cac
     sum_saved_time = 0  # sum(requests x (dc_latency - ep_latency))
     sum_requests = sum([requests for requests in video_ep_requests.values()])    # sum(requests)
 
+    # sort endpoints by requests
+    '''
+    ep_requests_dict = {}
+    for video_ep, requests in video_ep_requests.items():
+        ep_idx = video_ep[1]
+        if ep_idx in ep_requests_dict:
+            ep_requests_dict[ep_idx] += requests
+        else:
+            ep_requests_dict[ep_idx] = requests
+    ep_list = []
+    for ep_idx, subtotal_requests in ep_requests_dict.items():
+        if len(ep_list) == 0 or subtotal_requests <= ep_requests_dict[ep_list[-1]]:
+            ep_list.append(ep_idx)
+        else:
+            for _idx, saved_ep_idx in enumerate(ep_list):
+                if subtotal_requests > ep_requests_dict[saved_ep_idx]:
+                    ep_list.insert(_idx, ep_idx)
+                    break
+    '''
+
     # for each endpoint:
+    # for ep_idx in ep_list:
+    #    ep_cache_latency = ep_cache_latencies[ep_idx]
     for ep_idx, ep_cache_latency in enumerate(ep_cache_latencies):
         # skip if no latency can save
         if len(ep_cache_latency) == 0:
