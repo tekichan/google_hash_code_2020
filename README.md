@@ -37,7 +37,9 @@ Explanation has been documented inside the program.
 | e_so_many_books.txt | 5,104,922 |
 | f_libraries_of_the_world.txt | 5,240,161 |
 
-__Total score: 26,629,146. Global ranking: 763. Egypt ranking: 12. Germany ranking: 59. Hong Kong ranking: 3.__
+__Total score: 26,629,146. Global ranking: 771. Egypt ranking: 12. Germany ranking: 59. Hong Kong ranking: 3.__
+
+![Global Ranking](img/hashcode_2020_final_ranking.png)
 
 Let me share my lessons learnt for every participant to prepare your next competition.
 
